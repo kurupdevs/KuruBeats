@@ -1,0 +1,33 @@
+/*
+ * KuruBeats (2026)
+ * © Rukamori — github.com/rukamori
+ * GPL-3.0 License | Contributors: see git history
+ * Do not remove or alter this notice. - Per GPL-3.0 Section 4 & Section 5
+ */
+
+package com.kurubeats.app.innertube.models
+
+import kotlinx.serialization.Serializable
+
+@Serializable
+data class Tabs(
+    val tabs: List<Tab>,
+) {
+    @Serializable
+    data class Tab(
+        val tabRenderer: TabRenderer,
+    ) {
+        @Serializable
+        data class TabRenderer(
+            val title: String? = null,
+            val content: Content? = null,
+            val endpoint: NavigationEndpoint? = null,
+        ) {
+            @Serializable
+            data class Content(
+                val sectionListRenderer: SectionListRenderer? = null,
+                val musicQueueRenderer: MusicQueueRenderer? = null,
+            )
+        }
+    }
+}
