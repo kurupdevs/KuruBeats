@@ -62,6 +62,8 @@ import androidx.media3.common.Player
 import androidx.navigation.NavController
 import coil3.compose.AsyncImage
 import com.kurubeats.app.R
+import com.kurubeats.app.extensions.togglePlayPause
+import com.kurubeats.app.extensions.toggleRepeatMode
 import com.kurubeats.app.models.MediaMetadata
 import com.kurubeats.app.playback.PlayerConnection
 import com.kurubeats.app.ui.component.BottomSheetState
@@ -280,6 +282,13 @@ fun V11PlayerContent(
     val artistLine = remember(mediaMetadata.artists) {
         mediaMetadata.artists.joinToString(", ") { it.name }
     }
+    val firstArtistId =
+        remember(mediaMetadata.artists) {
+            mediaMetadata.artists.firstOrNull()?.id.takeUnless { it.isNullOrBlank() }
+        }
+    val onArtistClick = {
+        firstArtistId?.let { titleActions.onArtistClick(it) }
+    }
 
     val artScale by animateFloatAsState(
         targetValue = if (isPlaying) 1f else 0.93f,
@@ -335,10 +344,7 @@ fun V11PlayerContent(
                     modifier =
                         Modifier
                             .weight(1f)
-                            .clickable {
-                                val first = mediaMetadata.artists.firstOrNull()
-                                if (first != null) titleActions.onArtistClick(first.id)
-                            },
+                            .clickable(onClick = onArtistClick),
                 )
                 V11ControlButton(
                     onClick = onLyricsClick,
@@ -383,10 +389,7 @@ fun V11PlayerContent(
                             title = mediaMetadata.title,
                             artistLine = artistLine,
                             onTitleClick = titleActions.onTitleClick,
-                            onArtistClick = {
-                                val first = mediaMetadata.artists.firstOrNull()
-                                if (first != null) titleActions.onArtistClick(first.id)
-                            },
+                            onArtistClick = onArtistClick,
                         )
                         Spacer(modifier = Modifier.height(16.dp))
                         V11WaveformSlider(
@@ -428,10 +431,7 @@ fun V11PlayerContent(
                     title = mediaMetadata.title,
                     artistLine = artistLine,
                     onTitleClick = titleActions.onTitleClick,
-                    onArtistClick = {
-                        val first = mediaMetadata.artists.firstOrNull()
-                        if (first != null) titleActions.onArtistClick(first.id)
-                    },
+                    onArtistClick = onArtistClick,
                     centered = true,
                 )
                 Spacer(modifier = Modifier.height(22.dp))
