@@ -144,7 +144,7 @@ fun Thumbnail(
     val lowDataModeActive = rememberLowDataModeActive()
     val playerDesignStyle by rememberEnumPreference(
         key = PlayerDesignStyleKey,
-        defaultValue = PlayerDesignStyle.V11,
+        defaultValue = PlayerDesignStyle.V4,
     )
     val (thumbnailCornerRadius, _) =
         rememberPreference(
