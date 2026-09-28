@@ -21,15 +21,18 @@ import com.kurubeats.app.innertube.PlaybackAuthState
 import com.kurubeats.app.innertube.YouTube
 import com.kurubeats.app.innertube.models.YouTubeClient
 import com.kurubeats.app.innertube.models.YouTubeClient.Companion.ANDROID_MUSIC
+import com.kurubeats.app.innertube.models.YouTubeClient.Companion.ANDROID_TESTSUITE
 import com.kurubeats.app.innertube.models.YouTubeClient.Companion.ANDROID_VR_1_65_10
 import com.kurubeats.app.innertube.models.YouTubeClient.Companion.IOS
 import com.kurubeats.app.innertube.models.YouTubeClient.Companion.IOS_MUSIC
 import com.kurubeats.app.innertube.models.YouTubeClient.Companion.MWEB
 import com.kurubeats.app.innertube.models.YouTubeClient.Companion.TVHTML5
+import com.kurubeats.app.innertube.models.YouTubeClient.Companion.TVHTML5_SIMPLY
 import com.kurubeats.app.innertube.models.YouTubeClient.Companion.TVHTML5_SIMPLY_EMBEDDED_PLAYER
 import com.kurubeats.app.innertube.models.YouTubeClient.Companion.VISIONOS
 import com.kurubeats.app.innertube.models.YouTubeClient.Companion.WEB
 import com.kurubeats.app.innertube.models.YouTubeClient.Companion.WEB_CREATOR
+import com.kurubeats.app.innertube.models.YouTubeClient.Companion.WEB_EMBEDDED
 import com.kurubeats.app.innertube.models.YouTubeClient.Companion.WEB_PRIMARY
 import com.kurubeats.app.innertube.models.YouTubeClient.Companion.WEB_REMIX
 import com.kurubeats.app.innertube.models.response.PlayerResponse
@@ -140,10 +143,16 @@ object YTPlayerUtils {
             WEB,
             MWEB,
             WEB_CREATOR,
-            // Last-resort clients for YouTube bot-detection waves. TV embedded and
-            // native music clients use different attestation paths and often keep
-            // working anonymously when the web clients are blocked.
+            // Last-resort clients for YouTube bot-detection waves. These run without
+            // login and use different attestation paths, so they often keep working
+            // anonymously when the web clients are blocked.
+            // NOTE: TVHTML5_SIMPLY_EMBEDDED_PLAYER is skipped for anonymous users
+            // because the client catalog marks it loginRequired; TVHTML5_SIMPLY is
+            // the anonymous variant of the same embedded player.
             TVHTML5_SIMPLY_EMBEDDED_PLAYER,
+            ANDROID_TESTSUITE,
+            TVHTML5_SIMPLY,
+            WEB_EMBEDDED,
             ANDROID_MUSIC,
             IOS_MUSIC,
         )
@@ -940,6 +949,7 @@ object YTPlayerUtils {
                         playlistId = playlistId,
                         client = fallbackClient,
                         signatureTimestamp = signatureTimestamp,
+                        poToken = authState.resolvePlayerPoToken(fallbackClient, videoId = videoId),
                         setLogin = useCookieAuthentication,
                         authState = authState,
                     )
@@ -1042,6 +1052,7 @@ object YTPlayerUtils {
                             playlistId = playlistId,
                             client = client,
                             signatureTimestamp = signatureTimestamp,
+                            poToken = authState.resolvePlayerPoToken(client, videoId = videoId),
                             setLogin = requestUsesCookieAuthentication,
                             authState = authState,
                         ).also { result ->
@@ -1098,6 +1109,7 @@ object YTPlayerUtils {
                                     playlistId = playlistId,
                                     client = client,
                                     signatureTimestamp = signatureTimestamp,
+                                    poToken = authState.resolvePlayerPoToken(client, videoId = videoId),
                                     setLogin = requestUsesCookieAuthentication,
                                     authState = authState,
                                 ).getPlaybackPlayerResponseOrNull(videoId, authState)
