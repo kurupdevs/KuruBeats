@@ -67,8 +67,8 @@ android {
     applicationId = "com.kurubeats.app"
         minSdk = 26
         targetSdk = 37
-        versionCode = 147
-        versionName = "15.1.2"
+        versionCode = 148
+        versionName = "15.1.3"
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
         vectorDrawables.useSupportLibrary = true
