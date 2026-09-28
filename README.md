@@ -1,6 +1,6 @@
 <div align="center">
 
-  <img src="https://github.com/kurupdevs/KuruBeats/blob/main/fastlane/metadata/android/en-US/images/icon.png" width="160" height="160" alt="KuruBeats Logo" style="border-radius: 22%">
+  <img src="https://github.com/kurupdevs/KuruBeats/blob/main/assets/hero-3d.png" alt="KuruBeats 3D Banner">
 
   <h1>KuruBeats</h1>
 
