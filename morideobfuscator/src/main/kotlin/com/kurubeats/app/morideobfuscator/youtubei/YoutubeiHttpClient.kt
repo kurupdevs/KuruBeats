@@ -84,8 +84,16 @@ internal class YoutubeiHttpClient(
             ?: return failure(FailureKind.INVALID_RESPONSE, "Invalid request URL")
         var method = parsed.optString("method", "GET").uppercase()
         require(method in ALLOWED_METHODS)
+        // BloomeeTunes-style: route InnerTube player calls via YouTube Music
+        // API host, which has less aggressive bot detection for anonymous clients.
+        if (url.host.equals("www.youtube.com", ignoreCase = true) &&
+            url.encodedPath.startsWith("/youtubei/v1/player")
+        ) {
+            url = url.newBuilder().host("music.youtube.com").build()
+            headers = rewriteMusicHeaders(parsed.optJSONObject("headers"))
+        }
         validateUrl(url)
-        var headers = parsed.optJSONObject("headers")
+        var headers = headers ?: parsed.optJSONObject("headers")
         var body =
             parsed.optString("bodyBase64")
                 .takeIf(String::isNotEmpty)
@@ -254,6 +262,21 @@ internal class YoutubeiHttpClient(
                     }
                 }
             }.build()
+
+    private fun rewriteMusicHeaders(headers: JSONObject?): JSONObject {
+        val rewritten = JSONObject()
+        headers?.keys()?.forEach { name ->
+            var value = headers.optString(name)
+            if ((name.equals("origin", ignoreCase = true) ||
+                 name.equals("referer", ignoreCase = true)) &&
+                value.contains("www.youtube.com")
+            ) {
+                value = value.replace("www.youtube.com", "music.youtube.com")
+            }
+            rewritten.put(name, value)
+        }
+        return rewritten
+    }
 
     private fun validateUrl(url: HttpUrl) {
         require(url.isHttps)
