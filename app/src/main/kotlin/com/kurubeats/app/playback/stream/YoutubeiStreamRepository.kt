@@ -71,6 +71,17 @@ class YoutubeiStreamRepository
             }
 
             val locale = YouTube.locale
+            // Pre-mint the PO token before youtubei.js runs so the BotGuard
+            // WebView engine is warm when the __kuruBeatsVideoPoToken bridge
+            // is called. A cold engine can exceed the mint budget, leaving
+            // the anonymous WEB fallback without a token (bot detection).
+            try {
+                YTPlayerUtils.ensureYoutubeiPoTokensForPlayback(
+                    videoId = request.mediaId,
+                    authState = authState,
+                )
+            } catch (_: Exception) {
+            }
             val resolved =
                 try {
                     resolver.resolve(
