@@ -140,11 +140,53 @@
 
 ---
 
-## 📥 Download
+## 📥 Download Now
 
 <div align="center" id="download">
 
-Grab the latest APK from [GitHub Releases](https://github.com/kurupdevs/KuruBeats/releases/latest).
+<h2>Stable Release</h2>
+
+<table>
+  <thead>
+    <tr>
+      <th align="center">GitHub</th>
+      <th align="center">Obtainium</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td align="center">
+        <a href="https://github.com/kurupdevs/KuruBeats/releases/latest">
+          <img src="https://img.shields.io/badge/GET_IT_ON-GitHub-181717?style=for-the-badge&logo=github&logoColor=white" height="50" alt="Get KuruBeats on GitHub">
+        </a>
+      </td>
+      <td align="center">
+        <a href="https://apps.obtainium.imranr.dev/redirect?r=obtainium://add/https://github.com/kurupdevs/KuruBeats/">
+          <img src="https://img.shields.io/badge/GET_IT_ON-Obtainium-3DDC84?style=for-the-badge&logo=android&logoColor=white" height="50" alt="Get KuruBeats on Obtainium">
+        </a>
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+<h2>Development Build</h2>
+
+<table>
+  <thead>
+    <tr>
+      <th align="center">GitHub Actions</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td align="center">
+        <a href="https://github.com/kurupdevs/KuruBeats/actions">
+          <img src="https://img.shields.io/badge/GET_IT_ON-GitHub_Actions-2088FF?style=for-the-badge&logo=githubactions&logoColor=white" height="50" alt="Get KuruBeats dev builds on GitHub Actions">
+        </a>
+      </td>
+    </tr>
+  </tbody>
+</table>
 
 ### Build it yourself
 
