@@ -32,6 +32,7 @@ const SUPPORTED_AUDIO_MIME_TYPES = new Set([
   "audio/3gpp",
 ]);
 const ANONYMOUS_CLIENT = "VISIONOS";
+const ANONYMOUS_FALLBACK_CLIENTS = ["WEB"];
 const AUTHENTICATED_CLIENT = "WEB_CREATOR";
 const AUTHENTICATED_CLIENT_VERSION = "1.20260708.06.00";
 const CATALOG_DURATION_TOLERANCE_SECONDS = 2;
@@ -615,13 +616,21 @@ async function resolveCatalogReplacement(youtube, request, sourceInfo) {
   );
 }
 
+async function playerPoTokenForClient(request, client) {
+  if (client === AUTHENTICATED_CLIENT) return normalizedString(request.videoPoToken);
+  if (ANONYMOUS_FALLBACK_CLIENTS.includes(client)) {
+    return normalizedString(await globalThis.__kuruBeatsVideoPoToken(request.mediaId));
+  }
+  return undefined;
+}
+
 async function resolveWithClient(youtube, request, client, preparedInfo) {
   const supportsGvsPoToken = client === AUTHENTICATED_CLIENT;
   if (supportsGvsPoToken && !preparedInfo) await ensurePlayerMetadata(youtube);
   const info = preparedInfo ||
     await youtube.getBasicInfo(request.mediaId, {
       client,
-      po_token: supportsGvsPoToken ? normalizedString(request.videoPoToken) : undefined,
+      po_token: await playerPoTokenForClient(request, client),
     });
   const status = normalizedString(info.playability_status?.status);
   const reason = normalizedString(info.playability_status?.reason);
@@ -733,15 +742,24 @@ async function resolvePrepared(requestJson) {
       throw error;
     }
     const authenticated = Boolean(normalizedString(request.cookie));
-    const client = authenticated ? AUTHENTICATED_CLIENT : ANONYMOUS_CLIENT;
+    const clients = authenticated
+      ? [AUTHENTICATED_CLIENT]
+      : [ANONYMOUS_CLIENT, ...ANONYMOUS_FALLBACK_CLIENTS];
     let value;
-    try {
-      value = await resolveWithClient(session, request, client);
-    } catch (error) {
-      if (failureKind(error) !== "UNAVAILABLE" || !error.videoInfo) throw error;
-      value = await resolveCatalogReplacement(session, request, error.videoInfo);
-      if (!value) throw error;
+    let lastError;
+    for (const client of clients) {
+      try {
+        value = await resolveWithClient(session, request, client);
+        break;
+      } catch (error) {
+        if (failureKind(error) === "UNAVAILABLE" && error.videoInfo) {
+          value = await resolveCatalogReplacement(session, request, error.videoInfo);
+          if (value) break;
+        }
+        lastError = error;
+      }
     }
+    if (!value) throw lastError;
     return JSON.stringify({ ok: true, value });
   } catch (error) {
     return JSON.stringify({
