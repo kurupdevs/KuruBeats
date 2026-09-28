@@ -45,7 +45,7 @@ import java.util.concurrent.ConcurrentHashMap
 
 object YTPlayerUtils {
     private const val logTag = "YTPlayerUtils"
-    private const val YOUTUBEI_PO_TOKEN_RESOLUTION_BUDGET_MS = 5_000L
+    private const val YOUTUBEI_PO_TOKEN_RESOLUTION_BUDGET_MS = 20_000L
     private const val FAILED_CLIENT_BACKOFF_MS = 10 * 60 * 1000L
     private const val DEFAULT_STREAM_EXPIRE_SECONDS = 300
     private const val MAX_PLAYBACK_DATA_CACHE_ENTRIES = 128
