@@ -40,6 +40,11 @@
 
 <div align="center" id="showcase">
 
+<video src="https://github.com/kurupdevs/KuruBeats/raw/main/assets/promo-edit.mp4" width="320" controls></video>
+
+<p><em>Promo edit by kurupdevs</em></p>
+
+
 <img src="https://github.com/kurupdevs/KuruBeats/blob/main/fastlane/metadata/android/en-US/images/showcase/showcase_1.jpg" alt="Home" width="30%" />
 <img src="https://github.com/kurupdevs/KuruBeats/blob/main/fastlane/metadata/android/en-US/images/showcase/showcase_2.jpg" alt="Synced Lyrics" width="30%" />
 <img src="https://github.com/kurupdevs/KuruBeats/blob/main/fastlane/metadata/android/en-US/images/showcase/showcase_3.jpg" alt="Library" width="30%" />
