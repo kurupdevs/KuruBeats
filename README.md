@@ -29,7 +29,7 @@
 ---
 
 > [!NOTE]
-> **KuruBeats** is a community rebrand/fork of [ArchiveTune](https://github.com/rukamori/ArchiveTune) by [rukamori](https://github.com/rukamori), maintained by [kurupdevs](https://github.com/kurupdevs). Original copyright notices are preserved per GPL-3.0.
+> **KuruBeats** is maintained by [kurupdevs](https://github.com/kurupdevs).
 
 > [!IMPORTANT]
 > **Geographic Availability:** If YouTube Music is not supported in your region, a VPN or proxy set to a supported region is required for initial data fetching.
@@ -176,8 +176,6 @@ Open an issue on [GitHub](https://github.com/kurupdevs/KuruBeats/issues) — des
 ## 🙏 Credits
 
 - **Maintained by:** [kurupdevs](https://github.com/kurupdevs)
-- **Based on:** [ArchiveTune](https://github.com/rukamori/ArchiveTune) by [rukamori](https://github.com/rukamori) — original code, copyright headers, and license preserved per GPL-3.0.
-- **Open-source acknowledgments:** [Metrolist](https://github.com/mostafaalagamy/Metrolist) (base framework), [SimpMusic](https://github.com/maxrave-dev/SimpMusic) (lyrics API), [BetterLyrics](https://better-lyrics.boidu.dev/), Material Color Utilities, [ReadYou](https://github.com/Ashinch/ReadYou), [Seal](https://github.com/JunkFood02/Seal), plus all translators and contributors.
 
 ---
 
