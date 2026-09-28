@@ -14,7 +14,8 @@
     <a href="#-features"><b>Features</b></a> •
     <a href="#-download"><b>Download</b></a> •
     <a href="#-showcase"><b>Screenshots</b></a> •
-    <a href="https://github.com/kurupdevs/KuruBeats/issues"><b>Support</b></a>
+    <a href="https://github.com/kurupdevs/KuruBeats/issues"><b>Support</b></a> •
+    <a href="https://kurupdevs.github.io/kurubeats.html"><b>Website</b></a>
   </p>
 
   <div align="center">
