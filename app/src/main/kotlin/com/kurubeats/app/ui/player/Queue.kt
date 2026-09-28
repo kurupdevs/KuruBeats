@@ -191,7 +191,7 @@ fun Queue(
 
     val playerDesignStyle by rememberEnumPreference(
         key = PlayerDesignStyleKey,
-        defaultValue = PlayerDesignStyle.V4,
+        defaultValue = PlayerDesignStyle.V11,
     )
 
     val snackbarHostState = remember { SnackbarHostState() }
@@ -593,7 +593,7 @@ fun Queue(
                     )
                 }
 
-                PlayerDesignStyle.V9, PlayerDesignStyle.V10 -> {
+                PlayerDesignStyle.V9, PlayerDesignStyle.V10, PlayerDesignStyle.V11 -> {
                     val shuffleModeEnabled by playerConnection.shuffleModeEnabled.collectAsState()
                     QueueCollapsedContentV9(
                         showCodecOnPlayer = showCodecOnPlayer,
