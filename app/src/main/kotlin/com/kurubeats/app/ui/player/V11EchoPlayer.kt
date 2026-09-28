@@ -286,7 +286,7 @@ fun V11PlayerContent(
         remember(mediaMetadata.artists) {
             mediaMetadata.artists.firstOrNull()?.id.takeUnless { it.isNullOrBlank() }
         }
-    val onArtistClick = {
+    val onArtistClick: () -> Unit = {
         firstArtistId?.let { titleActions.onArtistClick(it) }
     }
 
