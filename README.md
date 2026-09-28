@@ -40,7 +40,7 @@
 
 <div align="center" id="showcase">
 
-<video src="https://raw.githubusercontent.com/kurupdevs/KuruBeats/main/assets/promo-edit.mp4" width="720" controls playsinline preload="metadata"></video>
+<video src="https://github.com/kurupdevs/KuruBeats/releases/download/v15.1.5/promo-edit.mp4" width="720" controls playsinline preload="metadata"></video>
 
 <p><em>Promo edit by kurupdevs</em></p>
 
