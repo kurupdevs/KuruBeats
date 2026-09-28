@@ -60,14 +60,14 @@ data class YouTubeClient(
 
     fun requestOrigin(): String =
         when (clientName.uppercase(Locale.US)) {
-            "WEB_REMIX" -> ORIGIN_YOUTUBE_MUSIC
+            "WEB_REMIX", "ANDROID_MUSIC", "IOS_MUSIC" -> ORIGIN_YOUTUBE_MUSIC
             "MWEB" -> ORIGIN_YOUTUBE_MOBILE
             else -> ORIGIN_YOUTUBE
         }
 
     fun requestReferer(): String =
         when (clientName.uppercase(Locale.US)) {
-            "WEB_REMIX" -> REFERER_YOUTUBE_MUSIC
+            "WEB_REMIX", "ANDROID_MUSIC", "IOS_MUSIC" -> REFERER_YOUTUBE_MUSIC
             "MWEB" -> REFERER_YOUTUBE_MOBILE
             "TVHTML5", "TVHTML5_SIMPLY_EMBEDDED_PLAYER", "TVHTML5_SIMPLY" -> REFERER_YOUTUBE_TV
             else -> REFERER_YOUTUBE
