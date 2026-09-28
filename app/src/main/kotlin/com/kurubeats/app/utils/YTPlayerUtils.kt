@@ -23,8 +23,10 @@ import com.kurubeats.app.innertube.models.YouTubeClient
 import com.kurubeats.app.innertube.models.YouTubeClient.Companion.ANDROID_MUSIC
 import com.kurubeats.app.innertube.models.YouTubeClient.Companion.ANDROID_VR_1_65_10
 import com.kurubeats.app.innertube.models.YouTubeClient.Companion.IOS
+import com.kurubeats.app.innertube.models.YouTubeClient.Companion.IOS_MUSIC
 import com.kurubeats.app.innertube.models.YouTubeClient.Companion.MWEB
 import com.kurubeats.app.innertube.models.YouTubeClient.Companion.TVHTML5
+import com.kurubeats.app.innertube.models.YouTubeClient.Companion.TVHTML5_SIMPLY_EMBEDDED_PLAYER
 import com.kurubeats.app.innertube.models.YouTubeClient.Companion.VISIONOS
 import com.kurubeats.app.innertube.models.YouTubeClient.Companion.WEB
 import com.kurubeats.app.innertube.models.YouTubeClient.Companion.WEB_CREATOR
@@ -138,6 +140,12 @@ object YTPlayerUtils {
             WEB,
             MWEB,
             WEB_CREATOR,
+            // Last-resort clients for YouTube bot-detection waves. TV embedded and
+            // native music clients use different attestation paths and often keep
+            // working anonymously when the web clients are blocked.
+            TVHTML5_SIMPLY_EMBEDDED_PLAYER,
+            ANDROID_MUSIC,
+            IOS_MUSIC,
         )
 
     private data class CachedStreamUrl(
