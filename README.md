@@ -40,17 +40,9 @@
 
 <div align="center" id="showcase">
 
-<video src="https://github.com/kurupdevs/KuruBeats/raw/main/assets/promo-edit.mp4" width="320" controls></video>
+<video src="https://raw.githubusercontent.com/kurupdevs/KuruBeats/main/assets/promo-edit.mp4" width="720" controls playsinline preload="metadata"></video>
 
 <p><em>Promo edit by kurupdevs</em></p>
-
-
-<img src="https://github.com/kurupdevs/KuruBeats/blob/main/fastlane/metadata/android/en-US/images/showcase/showcase_1.jpg" alt="Home" width="30%" />
-<img src="https://github.com/kurupdevs/KuruBeats/blob/main/fastlane/metadata/android/en-US/images/showcase/showcase_2.jpg" alt="Synced Lyrics" width="30%" />
-<img src="https://github.com/kurupdevs/KuruBeats/blob/main/fastlane/metadata/android/en-US/images/showcase/showcase_3.jpg" alt="Library" width="30%" />
-<img src="https://github.com/kurupdevs/KuruBeats/blob/main/fastlane/metadata/android/en-US/images/showcase/showcase_4.jpg" alt="Listening Stats" width="30%" />
-<img src="https://github.com/kurupdevs/KuruBeats/blob/main/fastlane/metadata/android/en-US/images/showcase/showcase_5.jpg" alt="Artists" width="30%" />
-<img src="https://github.com/kurupdevs/KuruBeats/blob/main/fastlane/metadata/android/en-US/images/showcase/showcase_6.jpg" alt="About" width="30%" />
 
 </div>
 
