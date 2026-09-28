@@ -84,16 +84,16 @@ internal class YoutubeiHttpClient(
             ?: return failure(FailureKind.INVALID_RESPONSE, "Invalid request URL")
         var method = parsed.optString("method", "GET").uppercase()
         require(method in ALLOWED_METHODS)
+        var headers = parsed.optJSONObject("headers")
         // BloomeeTunes-style: route InnerTube player calls via YouTube Music
         // API host, which has less aggressive bot detection for anonymous clients.
         if (url.host.equals("www.youtube.com", ignoreCase = true) &&
             url.encodedPath.startsWith("/youtubei/v1/player")
         ) {
             url = url.newBuilder().host("music.youtube.com").build()
-            headers = rewriteMusicHeaders(parsed.optJSONObject("headers"))
+            headers = rewriteMusicHeaders(headers)
         }
         validateUrl(url)
-        var headers = headers ?: parsed.optJSONObject("headers")
         var body =
             parsed.optString("bodyBase64")
                 .takeIf(String::isNotEmpty)
